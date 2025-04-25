@@ -1,4 +1,35 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Subir archivo y datos</title>
+</head>
+<body>
+  <h2>Formulario de subida</h2>
+  <form id="formulario" action="file_api.php" method="POST" enctype="multipart/form-data">
+    <label for="texto">Texto:</label>
+    <input type="text" id="texto" name="texto" required><br><br>
 
-<\html>
+    <label for="archivo">Archivo:</label>
+    <input type="file" id="archivo" name="archivo" required><br><br>
+
+    <input type="submit" value="Enviar">
+  </form>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const formulario = document.getElementById('formulario');
+
+      formulario.addEventListener('submit', function(e) {
+        const texto = document.getElementById('texto').value;
+        const archivo = document.getElementById('archivo').files[0];
+
+        if (!texto || !archivo) {
+          e.preventDefault();
+          alert("Por favor llena todos los campos y selecciona un archivo.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
